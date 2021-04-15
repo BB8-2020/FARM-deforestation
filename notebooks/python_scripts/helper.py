@@ -1,8 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from sentinelhub import SentinelHubRequest, bbox_to_dimensions
+from sentinelhub import SentinelHubRequest, BBox, CRS, DataCollection
+from sentinelhub.constants import MimeType
 
-def plot_image(image, factor=1.0, clip_range = None, **kwargs):
+def plot_image(image, factor=1/255, clip_range=(0, 1), **kwargs):
     """
     Utility function for plotting RGB images.
     """
@@ -14,18 +15,17 @@ def plot_image(image, factor=1.0, clip_range = None, **kwargs):
     ax.set_xticks([])
     ax.set_yticks([])
 
-def send_request(evalscript, input_data, responses, bbox, size, config):
-    request = SentinelHubRequest(evalscript=evalscript, input_data=input_data, responses=responses, bbox=bbox, size=size, config=config)
-    return request
 
-def get_resolution(map_bbox, max_width=2500, max_height=2500, keep_aspect=True):
-    normal_size = bbox_to_dimensions(map_bbox, resolution=1)
-    max_width, max_height = max_width, max_height
-    resolution = (normal_size[0] / max_width, normal_size[1] / max_height)
-    return max(resolution) if keep_aspect else resolution 
+def send_request(evalscript, input_data,  coords, config):
+    bbox = BBox(bbox=coords, crs=CRS.WGS84)
+    request = SentinelHubRequest(evalscript=evalscript, input_data=input_data, bbox=bbox, config=config, size=[512, 512], 
+    responses=[ SentinelHubRequest.output_response('default', MimeType.PNG) ])
+    response = request.get_data()[0]
+    return response
 
-def get_factor(mask_imgs, bias=3.5):
-    array = np.asarray(mask_imgs)
-    min_value, max_value = np.min(array), np.max(array)
-    factor = (min_value + bias) / max_value
-    return factor
+
+simple_request =  lambda eval_script, coords, config, **kwargs: send_request(
+    eval_script, 
+    [SentinelHubRequest.input_data(data_collection=DataCollection.SENTINEL2_L2A, time_interval=('2020-02-05', '2020-04-25'), other_args=kwargs)], 
+    coords, config
+)

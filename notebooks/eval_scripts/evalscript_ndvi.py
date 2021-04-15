@@ -1,4 +1,4 @@
-evalscript_forest = """
+evalscript_ndvi = """
 //VERSION=3
     function setup() {
       return{
