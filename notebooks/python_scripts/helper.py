@@ -19,13 +19,14 @@ def plot_image(image, factor=1/255, clip_range=(0, 1), **kwargs):
 def send_request(evalscript, input_data,  coords, config):
     bbox = BBox(bbox=coords, crs=CRS.WGS84)
     request = SentinelHubRequest(evalscript=evalscript, input_data=input_data, bbox=bbox, config=config, size=[512, 512], 
-    responses=[ SentinelHubRequest.output_response('default', MimeType.PNG) ])
+    responses=[ SentinelHubRequest.output_response('default', MimeType.PNG)])
     response = request.get_data()[0]
     return response
 
 
 simple_request =  lambda eval_script, coords, config, **kwargs: send_request(
     eval_script, 
-    [SentinelHubRequest.input_data(data_collection=DataCollection.SENTINEL2_L2A, time_interval=('2020-02-05', '2020-04-25'), other_args=kwargs)], 
+    [SentinelHubRequest.input_data(data_collection=DataCollection.SENTINEL2_L2A, time_interval=('2020-02-05', '2020-04-25'),
+                            other_args ={"dataFilter": {"maxCloudCoverage":0}})], 
     coords, config
 )
