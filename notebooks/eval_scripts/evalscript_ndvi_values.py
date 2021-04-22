@@ -1,4 +1,4 @@
-evalscript_nvdi_values = """
+evalscript_ndvi_values = """
 
 //VERSION=3
     function setup() {

@@ -146,7 +146,7 @@ function evaluatePixel(samples, scenes) {
     }
 
     ndvi = NDVI(samples[1]);
-    if (ndvi > 0.5) {
+    if (ndvi > 0.6) {
       colorMap = [1, 1, 1];
     } 
     return colorMap;
