@@ -23,16 +23,16 @@ def connect():
 def download_file(file_path):
     folder_path = '/'.join(file_path.split('/')[:-1])
     if not os.path.exists(folder_path):
-        os.mkdir(folder_path)
+        os.makedirs(folder_path)
     client.item(drive='me', path=f'{root_folder}/{file_path}').download(file_path)
 
 
-def download_folder(folder_path):
-    if not os.path.exists(folder_path):
-        os.mkdir(folder_path)
-    for file in client.item(drive='me', path=f'{root_folder}/{folder_path}').children.get():
-        file_path = f'{folder_path}/{file.name}'
-        client.item(drive='me', path=f'{root_folder}/{file_path}').download(file_path)
+def download(folder_path):
+    folders = client.item(drive='me', path=f'{root_folder}/{folder_path}').children.get()
+    for folder in folders:
+        download(f'{folder_path}/{folder.name}')
+    if len(folders) == 0:
+        download_file(folder_path)
 
 
 client = connect()
