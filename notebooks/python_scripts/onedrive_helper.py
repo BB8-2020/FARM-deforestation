@@ -22,8 +22,7 @@ def connect():
 
 def download_file(file_path):
     folder_path = '/'.join(file_path.split('/')[:-1])
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
+    os.makedirs(folder_path, exist_ok=True)
     client.item(drive='me', path=f'{root_folder}/{file_path}').download(file_path)
 
 
