@@ -35,4 +35,3 @@ def download(path, prefix='.'):
 
 
 client = connect()
-download('data')
