@@ -20,18 +20,19 @@ def connect():
     return client
 
 
-def download_file(file_path):
-    folder_path = '/'.join(file_path.split('/')[:-1])
+def download_file(file_path, download_path):
+    folder_path = '/'.join(download_path.split('/')[:-1])
     os.makedirs(folder_path, exist_ok=True)
-    client.item(drive='me', path=f'{root_folder}/{file_path}').download(file_path)
+    client.item(drive='me', path=f'{root_folder}/{file_path}').download(download_path)
 
 
-def download(folder_path):
-    folders = client.item(drive='me', path=f'{root_folder}/{folder_path}').children.get()
+def download(path, prefix='.'):
+    folders = client.item(drive='me', path=f'{root_folder}/{path}').children.get()
     for folder in folders:
-        download(f'{folder_path}/{folder.name}')
+        download(f'{path}/{folder.name}', prefix)
     if len(folders) == 0:
-        download_file(folder_path)
+        download_file(path, f'{prefix}/{path}')
 
 
 client = connect()
+download('data')
