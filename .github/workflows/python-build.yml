@@ -6,6 +6,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      DEVELOPER: ${{ secrets.DEVELOPER }}
+      ARC_SITE: ${{ secrets.ARC_SITE }}
+      ARC_NAME: ${{ secrets.ARC_NAME }}
+      ARC_PASSWORD: ${{ secrets.ARC_PASSWORD }}
+      SH_ID: ${{ secrets.SH_ID }}
+      SH_SECRET: ${{ secrets.SH_SECRET }}
+      OD_ID: ${{ secrets.OD_ID }}
+      OD_SECRET: ${{ secrets.OD_SECRET }}
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python 3.8

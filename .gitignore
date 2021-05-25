@@ -148,3 +148,5 @@ Backup of *.doc*
 
 # Keep structure
 !*.keep
+
+/data
