@@ -8,10 +8,10 @@ developer = os.environ.get("DEVELOPER", "False") == "True"
 install_requires = []
 
 if developer:
-    with open("requirments-dev.txt") as file:
+    with open("requirements-dev.txt") as file:
         install_requires.extend(file.read().splitlines())
 
-with open("requirments.txt") as file:
+with open("requirements.txt") as file:
     install_requires.extend(file.read().splitlines())
 
 setup(
