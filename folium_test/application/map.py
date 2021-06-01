@@ -53,7 +53,10 @@ csv_data = pd.read_csv('folium_test/data/coordinaten.csv', delimiter='\t', index
 
 for index, row in csv_data.iterrows():
     coords = [row['P1_Latitude'], row['P1_Longitude']]
-    folium.Marker(coords, popup='<strong>Info</strong>',
+    html = '<p style="font-family:verdana">Farmer Information<br><br>Name: name</p>'
+    iframe = folium.IFrame(html)
+    popup = folium.Popup(iframe, min_width=200, max_width=200)
+    folium.Marker(coords, popup=popup,
     tooltip=tooltip,
     icon=folium.Icon(color='blue', icon='home', prefix='fa')).add_to(marker_cluster)
 
@@ -112,4 +115,4 @@ folium.LayerControl().add_to(m)
 ##################################################################
 ######################### Save map ###############################
 
-m.save("folium_test//index.html")
+m.save("folium_test//application//index.html")
