@@ -49,10 +49,10 @@ m = folium.Map(
 tooltip = 'Click for more info'
 marker_cluster = MarkerCluster()
 
-csv_data = pd.read_csv('folium_test/data/coordinaten.csv', delimiter='\t', index_col=0)
+csv_data = pd.read_csv('folium_test/data/coordinaten_farms.csv', delimiter=',')
 
 for index, row in csv_data.iterrows():
-    coords = [row['P1_Latitude'], row['P1_Longitude']]
+    coords = [row['Latitude'], row['Longitude']]
     html = '<p style="font-family:verdana">Farmer Information<br><br>Name: name</p>'
     iframe = folium.IFrame(html)
     popup = folium.Popup(iframe, min_width=200, max_width=200)
@@ -72,7 +72,7 @@ overlay2 = os.path.join('folium_test//data', 'result.json')
 
 # add .png to map
 overlay3 = os.path.join('folium_test//data', 'respone_t.png')
-m.add_child(folium.raster_layers.ImageOverlay(overlay3, opacity=0.8, bounds=[[21.443988, 87.018996], [21.643988, 87.218996]]))
+m.add_child(folium.raster_layers.ImageOverlay(overlay3, name='png', opacity=0.8, bounds=[[21.443988, 87.018996], [21.643988, 87.218996]]))
 
 # Create Polygon overlay with GeoJSON data
 style1 = {'fillColor': '#228B22', 'color': '#228B22'}
