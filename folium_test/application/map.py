@@ -22,8 +22,8 @@ min_lat, max_lat = 19, 29
 
 m = folium.Map(
     # Starting point + Window size
-    location=[21.5693, 87.1240],
-    width=1500,
+    location=[-15.668885, -54.550848],
+    width=1400,
     height=800,
 
     # Tile settings
@@ -65,7 +65,7 @@ for index, row in csv_data.iterrows():
 ######################## GeoJSON #################################
 
 # GeoJSON data
-overlay1 = os.path.join('folium_test//data//result_geojson', 'result.json')
+overlay1 = os.path.join('folium_test//data//result_geojson', 'model.json')
 # overlay2 = os.path.join('folium_test//data', 'result.json')
 
 
@@ -78,7 +78,7 @@ style1 = {'fillColor': '#228B22', 'color': '#228B22'}
 style2 = {'fillColor': '#c21f1f', 'color': '#c21f1f'}
 
 # calculate area of geojson shape
-f = open('folium_test/data/result_geojson/result.json',)
+f = open('folium_test/data/result_geojson/model.json',)
 geojson_data = json.load(f)
 total = 0
 for shape in geojson_data['features']:
@@ -86,7 +86,8 @@ for shape in geojson_data['features']:
 
 # folium.GeoJson(overlay2, name='Woods cut (1990)', style_function=lambda x:style2).add_to(m)
 # add geojson shape with popup with area data to map
-geo_txt = f'{str(round(total, 2))} km/2'
+total_m2 = 25000000
+geo_txt = f'{str(round(total, 2))} m/2 ---- {round(total / total_m2 * 100, 1)}% covered'
 geo_popup = folium.Popup(geo_txt, min_width=100, max_width=200)
 folium.GeoJson(overlay1, name='Woods now', style_function=lambda x:style1).add_child(geo_popup).add_to(m)
 
