@@ -36,7 +36,6 @@ def load_image(file_path: str) -> Any:
         The loaded image that has been processed.
     """
     img = cv2.imread(file_path, cv2.IMREAD_UNCHANGED)
-    img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGBA)
     height, width, *_ = img.shape
     for y in range(height):
         for x in range(width):
