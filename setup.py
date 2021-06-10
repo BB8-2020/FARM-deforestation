@@ -1,10 +1,6 @@
-import os
-
-from dotenv import load_dotenv
 from setuptools import find_packages, setup
 
-load_dotenv()
-developer = os.environ.get("DEVELOPER", "False") == "True"
+developer = True
 install_requires = []
 
 if developer:
