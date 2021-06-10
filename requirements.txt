@@ -1,1 +1,5 @@
 python-dotenv
+PIL
+Pillow
+Tensorflow
+matplotlib
