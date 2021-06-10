@@ -1,25 +1,69 @@
 """Formats the locations dataset to the sentinelhub format."""
-from .formatter import format_locations
+from python.formatters.formatter import format_locations
 
 
-def dot_filter(x):
-    """Format to replace the dots with nothing."""
-    return x.replace(".", "")
+def dot_filter(coords: str) -> str:
+    """Format to replace the dots with nothing.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with the dot symbols removed.
+    """
+    return coords.replace(".", "")
 
 
-def degree_filter(x):
-    """Format to replace the degrees symbols with dots."""
-    return x.replace("⁰", ".").replace("˚", ".")
+def degree_filter(coords: str) -> str:
+    """Format to replace the degrees symbols with dots.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with the degree symbols replaced with a dot.
+    """
+    return coords.replace("⁰", ".").replace("˚", ".")
 
 
-def apostrophe_quotation_filter(x):
-    """Format to replace quotation mark with nothings."""
-    return x.replace("'", "").replace('"', "")
+def apostrophe_quotation_filter(coords: str) -> str:
+    """Format to replace quotation mark with nothings.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with the apostrophe and quotation symbols removed.
+    """
+    return coords.replace("'", "").replace('"', "")
 
 
-def last_symbol_filter(x):
-    """Format to delete the last quotation mark."""
-    return x[:-1]
+def last_symbol_filter(coords: str) -> str:
+    """Format to delete the last symbol.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with the last symbol removed.
+    """
+    return coords[:-1]
 
 
 def format_sentinelhub():

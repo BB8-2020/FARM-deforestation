@@ -1,24 +1,57 @@
 """Formats the locations dataset to the arcgis format."""
-from .formatter import format_locations
+from python.formatters.formatter import format_locations
 
 
-def degree_filter(x):
-    """Format to replace the degree symbol with another."""
-    return x.replace("⁰", "˚")
+def degree_filter(coords: str) -> str:
+    """Format to replace the degree symbol with another.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with consistent degree symbols.
+    """
+    return coords.replace("⁰", "˚")
 
 
-def apostrophe_filter(x):
-    """Format to have apostrophe be consistent."""
-    if x[-1] == "'":
-        return x[:-2] + '"' if x[-2] == "'" else x[:-1] + '"'
-    return x
+def apostrophe_filter(coords: str) -> str:
+    """Format to have apostrophe be consistent.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    coords
+        The coords with consistent apostrophe symbols.
+    """
+    if coords[-1] == "'":
+        return coords[:-2] + '"' if coords[-2] == "'" else coords[:-1] + '"'
+    return coords
 
 
-def quotation_marks_filter(x):
-    """Format to have quotation marks be consistent."""
-    if x[5] == '"':
-        return x[:4] + "'" + x[6:]
-    return x
+def quotation_marks_filter(coords: str) -> str:
+    """Format to have quotation marks be consistent.
+
+    Paramters
+    ---------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    coords
+        The coords with consistent quotation marks symbols.
+    """
+    if coords[5] == '"':
+        return coords[:4] + "'" + coords[6:]
+    return coords
 
 
 def format_arcgis():
