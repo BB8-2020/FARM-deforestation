@@ -5,7 +5,7 @@ import pandas as pd
 def format_locations(extension, *format_filters):
     """Open, format and save the locations."""
     df = pd.read_excel(
-        "../../data/locations/FarmerLocationExtract4Interns.xlsx", engine="openpyxl"
+        "data/Locations/FarmerLocationExtract4Interns.xlsx", engine="openpyxl"
     )
 
     # Drops the nan value rows and applies the filter to the P1_Longitude and P1_Latitude columns.
@@ -16,7 +16,7 @@ def format_locations(extension, *format_filters):
 
     # Save the result of the applied filters.
     writer = pd.ExcelWriter(
-        f"../../data/locations/FarmerLocationExtract4Interns_{extension}.xlsx",
+        f"data/Locations/FarmerLocationExtract4Interns_{extension}.xlsx",
         engine="xlsxwriter",
     )
     df.to_excel(writer, sheet_name="Sheet1")
