@@ -7,7 +7,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DEVELOPER: ${{ secrets.DEVELOPER }}
       ARC_SITE: ${{ secrets.ARC_SITE }}
       ARC_NAME: ${{ secrets.ARC_NAME }}
       ARC_PASSWORD: ${{ secrets.ARC_PASSWORD }}
@@ -24,7 +23,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install python-dotenv
         pip install .
     - name: Lint with flake8
       run: |
@@ -32,4 +30,4 @@ jobs:
         flake8 . --config="./setup.cfg"
     - name: Test with pytest
       run: |
-        -m pytest . -vs
+        python -m pytest . -vs
