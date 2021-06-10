@@ -1,5 +1,5 @@
 """Formats the locations dataset to the sentinelhub format."""
-from formatter import format_locations
+from .formatter import format_locations
 
 
 def dot_filter(x):

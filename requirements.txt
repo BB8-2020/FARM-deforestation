@@ -1,3 +1,5 @@
 geojson
+numpy
+opencv-python
 pandas
 python-dotenv

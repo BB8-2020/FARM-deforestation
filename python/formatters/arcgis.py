@@ -1,5 +1,5 @@
 """Formats the locations dataset to the arcgis format."""
-from formatter import format_locations
+from .formatter import format_locations
 
 
 def degree_filter(x):
