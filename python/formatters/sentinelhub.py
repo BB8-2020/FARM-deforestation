@@ -1,5 +1,5 @@
 """Formats the locations dataset to the sentinelhub format."""
-from python.formatters.formatter import format_locations
+from python.helpers.formatter import format_locations
 
 
 def dot_filter(coords: str) -> str:
@@ -66,10 +66,17 @@ def last_symbol_filter(coords: str) -> str:
     return coords[:-1]
 
 
-def format_sentinelhub():
-    """Format the locations with the given filtes to be in a format ideal for sentinelhub."""
+def format_sentinelhub(relative_path: str = "../../"):
+    """Format the locations with the given filtes to be in a format ideal for sentinelhub.
+
+    Paramters
+    ---------
+    relative_path
+        The relative path to read and write the xlsx files.
+    """
     format_locations(
         "sentinelhub",
+        relative_path,
         dot_filter,
         degree_filter,
         apostrophe_quotation_filter,
