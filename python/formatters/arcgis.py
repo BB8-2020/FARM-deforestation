@@ -1,0 +1,63 @@
+"""Formats the locations dataset to the arcgis format."""
+from python.formatters.formatter import format_locations
+
+
+def degree_filter(coords: str) -> str:
+    """Format to replace the degree symbol with another.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    string
+        The coords with consistent degree symbols.
+    """
+    return coords.replace("⁰", "˚")
+
+
+def apostrophe_filter(coords: str) -> str:
+    """Format to have apostrophe be consistent.
+
+    Parameters
+    ----------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    coords
+        The coords with consistent apostrophe symbols.
+    """
+    if coords[-1] == "'":
+        return coords[:-2] + '"' if coords[-2] == "'" else coords[:-1] + '"'
+    return coords
+
+
+def quotation_marks_filter(coords: str) -> str:
+    """Format to have quotation marks be consistent.
+
+    Paramters
+    ---------
+    coords
+        The coordinates in string form.
+
+    Returns
+    -------
+    coords
+        The coords with consistent quotation marks symbols.
+    """
+    if coords[5] == '"':
+        return coords[:4] + "'" + coords[6:]
+    return coords
+
+
+def format_arcgis():
+    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis."""
+    format_locations("arcgis", degree_filter, apostrophe_filter, quotation_marks_filter)
+
+
+if __name__ == "__main__":
+    format_arcgis()
