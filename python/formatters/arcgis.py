@@ -1,5 +1,5 @@
 """Formats the locations dataset to the arcgis format."""
-from python.formatters.formatter import format_locations
+from python.helpers.formatter import format_locations
 
 
 def degree_filter(coords: str) -> str:
@@ -50,13 +50,25 @@ def quotation_marks_filter(coords: str) -> str:
         The coords with consistent quotation marks symbols.
     """
     if coords[5] == '"':
-        return coords[:4] + "'" + coords[6:]
+        return coords[:5] + "'" + coords[6:]
     return coords
 
 
-def format_arcgis():
-    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis."""
-    format_locations("arcgis", degree_filter, apostrophe_filter, quotation_marks_filter)
+def format_arcgis(relative_path: str = "../../"):
+    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis.
+
+    Paramters
+    ---------
+    relative_path
+        The relative path to read and write the xlsx files.
+    """
+    format_locations(
+        "arcgis",
+        relative_path,
+        degree_filter,
+        apostrophe_filter,
+        quotation_marks_filter,
+    )
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 geojson
 numpy
+onedrivesdk
 opencv-python
 openpyxl
 pandas
