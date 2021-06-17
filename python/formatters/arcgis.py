@@ -50,7 +50,7 @@ def quotation_marks_filter(coords: str) -> str:
         The coords with consistent quotation marks symbols.
     """
     if coords[5] == '"':
-        return coords[:4] + "'" + coords[6:]
+        return coords[:5] + "'" + coords[6:]
     return coords
 
 

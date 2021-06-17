@@ -18,7 +18,7 @@ def dot_filter(coords: str) -> str:
     return coords.replace(".", "")
 
 
-def degree_filter(coords: str) -> str:
+def degree_filter_sentinelhub(coords: str) -> str:
     """Format to replace the degrees symbols with dots.
 
     Parameters
@@ -50,22 +50,6 @@ def apostrophe_quotation_filter(coords: str) -> str:
     return coords.replace("'", "").replace('"', "")
 
 
-def last_symbol_filter(coords: str) -> str:
-    """Format to delete the last symbol.
-
-    Parameters
-    ----------
-    coords
-        The coordinates in string form.
-
-    Returns
-    -------
-    string
-        The coords with the last symbol removed.
-    """
-    return coords[:-1]
-
-
 def format_sentinelhub(relative_path: str = "../../"):
     """Format the locations with the given filtes to be in a format ideal for sentinelhub.
 
@@ -78,9 +62,8 @@ def format_sentinelhub(relative_path: str = "../../"):
         "sentinelhub",
         relative_path,
         dot_filter,
-        degree_filter,
+        degree_filter_sentinelhub,
         apostrophe_quotation_filter,
-        last_symbol_filter,
     )
 
 
