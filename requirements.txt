@@ -1,11 +1,12 @@
 geojson
+keras
+matplotlib
 numpy
 onedrivesdk
 opencv-python
 openpyxl
 pandas
-python-dotenv
 PIL
 Pillow
-Tensorflow
-matplotlib
+python-dotenv
+tensorflow
