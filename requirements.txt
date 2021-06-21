@@ -1,3 +1,9 @@
+geojson
+numpy
+onedrivesdk
+opencv-python
+openpyxl
+pandas
 python-dotenv
 PIL
 Pillow
