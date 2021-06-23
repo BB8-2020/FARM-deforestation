@@ -87,7 +87,7 @@ def standard_unet_model(img_size: tuple = (512, 512), num_classes: int = 2) -> M
 
 
 def model_getter(
-    model_build_func: Callable[[tuple, int], Model], num_classes: int, img_size: tuple
+    model_build_func: Callable[[tuple, int], Model], img_size: tuple, num_classes: int
 ) -> Model:
     """Create and return a model.
 
@@ -95,6 +95,8 @@ def model_getter(
     ----------
     model_build_func
         The function that builds the desired model type and returns it.
+    img_size
+        A tuple defining the pixel dimensions of used images
     num_classes
         The amount of classes to classify.
 

@@ -55,7 +55,7 @@ def process_mask_confidence_treshold(
         The model data.
     conf_treshold
         The confidence threshold to check.
-    confbasevalue
+    conf_basevalue
         The confidence base value.
 
     Returns

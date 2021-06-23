@@ -80,7 +80,7 @@ def file_loader(
     img_size: Tuple[int, int] = (512, 512),
     batch_size: int = 1,
     seed: int = 1337,
-) -> Tuple[SatelliteImages, SatelliteImages]:
+) -> Tuple[SatelliteImages, SatelliteImages, List[str], List[str], List[str], List[str]]:
     """Return a train and value generator to fit the model.
 
     Parameters
@@ -98,8 +98,18 @@ def file_loader(
 
     Returns
     -------
-    Tuple[SatelliteImages, SatelliteImages]
-        The train and value generators.
+    train_gen
+        Train generator object
+    val_gen
+        Validation generator object
+    train_input_img_paths
+        Train data image paths
+    train_target_img_paths
+        Train data mask paths
+    val_input_img_paths
+        Validation data image paths
+    val_target_img_paths
+        Validation data mask paths
     """
     input_img_paths = sorted(
         [
@@ -135,4 +145,4 @@ def file_loader(
         batch_size, img_size, val_input_img_paths, val_target_img_paths
     )
 
-    return train_gen, val_gen
+    return train_gen, val_gen, train_input_img_paths, train_target_img_paths, val_input_img_paths, val_target_img_paths
