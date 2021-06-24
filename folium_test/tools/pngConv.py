@@ -10,7 +10,6 @@ def transparent(filename):
     ----------
     filename
         name of file
-    
     """
     img = Image.open('folium_test/data/mask_png/' + filename)
     img = img.convert("RGBA")

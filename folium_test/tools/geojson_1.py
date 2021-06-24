@@ -8,7 +8,6 @@ import os
 def get_bounds(n, e, s, w):
     """
 
-
     Parameters
     ----------
     n, e s, w
@@ -27,7 +26,7 @@ def get_bounds(n, e, s, w):
 
 def load_image(file_path):
     """    
-    Generates chart shown in map
+
 
     Parameters
     ----------
@@ -51,7 +50,7 @@ def load_image(file_path):
 
 def trim_image(img):
     """    
-    Generates chart shown in map
+
 
     Parameters
     ----------
@@ -73,7 +72,7 @@ def trim_image(img):
 
 def get_approxes(im, precision=0.0001):
     """    
-    Generates chart shown in map
+
 
     Parameters
     ----------
@@ -98,7 +97,7 @@ def get_approxes(im, precision=0.0001):
 
 def format_geojson(n, e, s, w, filename):
     """    
-    Generates chart shown in map
+
 
     Parameters
     ----------
