@@ -38,18 +38,16 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 nav_bar = html.Div(children=[
     html.Nav(className="nav nav-pills", children=[
-        html.Img(src="https://d2kta6kx4236p6.cloudfront.net/img/logo.56e22df1.png", height="30px"),
-        html.A('App1', className="nav-item nav-link btn", href='/apps/App1'),
-        html.A('App2', className="nav-item nav-link btn", href='/apps/App2') 
-])])
+        html.Img(src="https://d2kta6kx4236p6.cloudfront.net/img/logo.56e22df1.png", height="30px")
+], style={'padding': '10px 10px 10px 10px'})])
 
 bot_bar = html.Div(children=[
     html.Img(src="https://d2kta6kx4236p6.cloudfront.net/img/capgemini-logo.dd5491a8.png", height="30px")
-    ])
+    ], style={'padding': '10px 10px 10px 10px'})
 
 # content = html.Iframe(id='map', srcDoc=open('folium_test//application//index.html', 'r').read(), width='100%', height='2000', style=CONTENT_STYLE)
 
-content = html.Div(id="page-content", children=[html.Iframe(id='map', srcDoc=open('folium_test//application//index.html', 'r').read(), width='100%', height='805')])
+content = html.Div(id="page-content", children=[html.Iframe(id='map', srcDoc=open('folium_test//application//index.html', 'r').read(), width='100%', height='730')])
 
 app.layout = html.Div([
     nav_bar,
