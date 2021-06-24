@@ -3,6 +3,15 @@ import os
 
 
 def transparent(filename):
+    """
+    changes colors of photo mask.
+
+    Parameters
+    ----------
+    filename
+        name of file
+    
+    """
     img = Image.open('folium_test/data/mask_png/' + filename)
     img = img.convert("RGBA")
 

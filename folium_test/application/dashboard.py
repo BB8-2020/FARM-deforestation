@@ -12,30 +12,6 @@ CAPGEMINI_LOGO = "folium_test/application/images/capgemini_logo.png"
 # print(os.getcwd())
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-# navbar = dbc.Navbar(
-#     [
-#         html.A(
-#             # Use row and col to control vertical alignment of logo / brand
-#             dbc.Row(
-#                 [
-#                     html.Img(src="https://d2kta6kx4236p6.cloudfront.net/img/logo.56e22df1.png", height="30px"),
-#                     dbc.Nav(
-#                         [
-#                             dbc.NavItem(dbc.NavLink("Home", active=True, href="#")),
-#                             dbc.NavItem(dbc.NavLink("Interactive Map", href="#"))
-#                         ],
-#                         pills=True
-#                     )
-#                 ],
-#                 align="center",
-#                 no_gutters=True,
-#             ),
-#             href="https://plot.ly",
-#         )
-#     ],
-#     color="white"
-# )
-
 nav_bar = html.Div(children=[
     html.Nav(className="nav nav-pills", children=[
         html.Img(src="https://d2kta6kx4236p6.cloudfront.net/img/logo.56e22df1.png", height="30px")

@@ -6,7 +6,18 @@ import os
 
 
 def get_bounds(n, e, s, w):
-    """Get the n, e, s and w extents and returning it."""
+    """
+
+
+    Parameters
+    ----------
+    n, e s, w
+        coordinates
+    
+    Returns
+    -------
+    
+        """
     n_extent = n
     e_extent = e
     s_extent = s
@@ -15,7 +26,19 @@ def get_bounds(n, e, s, w):
 
 
 def load_image(file_path):
-    """Load the file path image grayscale it and convert it to a 4 channel rgba before returning it."""
+    """    
+    Generates chart shown in map
+
+    Parameters
+    ----------
+    file_path
+        path to file
+    
+    Returns
+    -------
+    img
+        chart showing data
+    """
     img = cv2.imread(file_path, cv2.IMREAD_UNCHANGED)
     img = cv2.cvtColor(img, cv2.COLOR_GRAY2RGBA)
     height, width, *_ = img.shape
@@ -27,7 +50,18 @@ def load_image(file_path):
 
 
 def trim_image(img):
-    """Get the alpha channel and trim everything that is non zero."""
+    """    
+    Generates chart shown in map
+
+    Parameters
+    ----------
+    img
+    
+    
+    Returns
+    -------
+ 
+    """
     alpha = img[..., 3]
     y_nonzero, x_nonzero = np.nonzero(alpha)
     res = alpha[
@@ -38,7 +72,21 @@ def trim_image(img):
 
 
 def get_approxes(im, precision=0.0001):
-    """Get the approxes of the image by finding the contours and returning it."""
+    """    
+    Generates chart shown in map
+
+    Parameters
+    ----------
+    im
+
+    
+    precision
+
+    
+    Returns
+    -------
+    
+    """
     contours, *_ = cv2.findContours(im, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     approxes = []
     for contour in contours:
@@ -49,7 +97,18 @@ def get_approxes(im, precision=0.0001):
 
 
 def format_geojson(n, e, s, w, filename):
-    """Format the input images to the geojson format."""
+    """    
+    Generates chart shown in map
+
+    Parameters
+    ----------
+    n, e, s, w
+        coordinates
+    
+    filename
+
+
+    """
     # Getting the bounds, loading and trimming the image.
     n_extent, e_extent, s_extent, w_extent = get_bounds(n, e, s, w)
     img = load_image("folium_test/data/mask_png/" + filename)

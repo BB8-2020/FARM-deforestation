@@ -83,6 +83,15 @@ stat_layer = folium.FeatureGroup(name="stats", show=False)
 
 def writeJson(filename, nw, ne, se, sw):
     """
+    Create a square geojson figure to show on the map
+
+    Parameters
+    ----------
+    filename
+        To save the file under the correct name
+    nw, ne, se, sw
+        corner coordinates to make a square
+    
     """
     json_dict = {
             "type": "FeatureCollection",
@@ -111,7 +120,20 @@ def writeJson(filename, nw, ne, se, sw):
 
 
 def clac_area(filename):
+    """
+    Calculates given area of geojson file
 
+    Parameters
+    ----------
+    filename
+        to find correct file
+    
+    Returns
+    -------
+    Tuple
+        total wooded area in km/2 and in % of total land
+    
+    """
     total_m2 = 25000000
     f = open('folium_test/data/result_geojson/' + filename,)
     geojson_data = json.load(f)
@@ -120,11 +142,17 @@ def clac_area(filename):
         total_area += area(shape['geometry'])
     
     percentage_coverage = total_area / total_m2 * 100
-    return (round(total_area, 2), round(percentage_coverage, 2))
+    return (round((total_area / 1000), 2), round(percentage_coverage, 2))
 
 
 def geoshape():
     """
+    Runs calc_area() and writeJson() correctly
+    
+    Returns
+    -------
+    Dictionary
+        cointains area name with corresponding data over years
     """
     checked = []
     stat_dict = {}
@@ -151,6 +179,19 @@ def geoshape():
 
 
 def makeGraph(data):
+    """
+    Generates chart shown in map
+
+    Parameters
+    ----------
+    data
+        to find correct file
+    
+    Returns
+    -------
+    Chart
+        chart showing data
+    """
 
     df = pd.DataFrame(data, columns=['km/2', '% of area covered in woods'])
     df['Year'] = ['2017', '2018', '2019']
@@ -161,7 +202,18 @@ def makeGraph(data):
     return alt_chart
 
 def choseStyle(overlay, data):
+    """
+    Lays geojson shape over map, and adds a chart with data to the popup
 
+    Parameters
+    ----------
+    overlay
+        square geoshape to add to map
+    
+    data
+        data to run makeGraph() with
+
+    """
 
     style1 = {'fillColor': '#33DB05', 'color': '#33DB05'} # bebossing
     style2 = {'fillColor': '#E1FF00', 'color': '#E1FF00'} # weinig ontbossing
@@ -274,4 +326,4 @@ FloatImage(legend_2, bottom=30, left=1).add_to(m)
 ##################################################################
 ######################### Save map ###############################
 
-m.save("folium_test//application//index.html")
+m.save("folium_test//application//index_test.html")
