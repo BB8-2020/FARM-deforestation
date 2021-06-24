@@ -9,4 +9,6 @@ pandas
 PIL
 Pillow
 python-dotenv
+scipy
+sentinelhub
 tensorflow
