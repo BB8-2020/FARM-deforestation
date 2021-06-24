@@ -1,71 +1,74 @@
-"""Formats the locations dataset to the sentinelhub format."""
+"""Formats the locations dataset to the acrgis format."""
+from re import split as re_split
+
+import numpy as np
+from pandas.core.frame import DataFrame
+from scipy import stats
+
 from python.helpers.formatter import format_locations
 
 
-def dot_filter(coords: str) -> str:
-    """Format to replace the dots with nothing.
+def dms_to_dd(degrees: str, minutes: str, seconds: str) -> float:
+    """Format degrees minutes seconds to dd.
 
     Parameters
     ----------
-    coords
-        The coordinates in string form.
+    degrees
+        The degrees of the dms format.
+    minutes
+        The minutes of the dms format.
+    seconds
+        The seconds of the dms format
 
     Returns
     -------
-    string
-        The coords with the dot symbols removed.
+    dd
+        The degree decimal representation of the degree minute second format.
     """
-    return coords.replace(".", "")
+    dd = float(degrees) + (float(minutes) / 60) + (float(seconds[:-1]) / (60 * 60))
+    return dd
 
 
-def degree_filter_sentinelhub(coords: str) -> str:
-    """Format to replace the degrees symbols with dots.
+def parse_dms(dms: str) -> float:
+    """Format dms to dd.
 
     Parameters
     ----------
-    coords
-        The coordinates in string form.
+    dms
+        The degrees minutes seconds format.
 
     Returns
     -------
-    string
-        The coords with the degree symbols replaced with a dot.
+    Union[float, np.nan]
+        The degree decimal representation of the degree minute second format.
     """
-    return coords.replace("⁰", ".").replace("˚", ".")
+    try:
+        parts = re_split("[˚']+", dms)
+        return dms_to_dd(*parts)
+    except (TypeError, ValueError):
+        return np.NaN
 
 
-def apostrophe_quotation_filter(coords: str) -> str:
-    """Format to replace quotation mark with nothings.
+def df_filter(df: DataFrame) -> DataFrame:
+    """Filter the dataframe to remove all the outliers.
 
     Parameters
     ----------
-    coords
-        The coordinates in string form.
+    df
+        The given dataframe to apply this filter on.
 
     Returns
     -------
-    string
-        The coords with the apostrophe and quotation symbols removed.
+    DataFrame
+        The filtered dataframe.
     """
-    return coords.replace("'", "").replace('"', "")
+    return df[(np.abs(stats.zscore(df)) < np.abs(stats.zscore(df)).mean()).all(axis=1)]
 
 
-def format_sentinelhub(relative_path: str = "../../"):
-    """Format the locations with the given filtes to be in a format ideal for sentinelhub.
-
-    Paramters
-    ---------
-    relative_path
-        The relative path to read and write the xlsx files.
-    """
-    format_locations(
-        "sentinelhub",
-        relative_path,
-        dot_filter,
-        degree_filter_sentinelhub,
-        apostrophe_quotation_filter,
-    )
+def format_arcgis():
+    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis."""
+    format_locations("arcgis", df_filter, parse_dms)
 
 
 if __name__ == "__main__":
-    format_sentinelhub()
+    format_arcgis()

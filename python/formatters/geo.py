@@ -7,7 +7,7 @@ from geojson import Feature, FeatureCollection, Polygon, dump
 
 
 def get_bounds() -> Tuple[float, float, float, float]:
-    """Get the n, e, s and w extents and returning it.
+    """Get the north, east, south and west extents and return it.
 
     Returns
     -------
