@@ -6,7 +6,6 @@ onedrivesdk
 opencv-python
 openpyxl
 pandas
-PIL
 Pillow
 python-dotenv
 scipy
