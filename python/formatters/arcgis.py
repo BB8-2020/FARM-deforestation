@@ -54,17 +54,11 @@ def quotation_marks_filter(coords: str) -> str:
     return coords
 
 
-def format_arcgis(relative_path: str = "../../"):
-    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis.
-
-    Paramters
-    ---------
-    relative_path
-        The relative path to read and write the xlsx files.
-    """
+def format_arcgis():
+    """Format the locations with the apostrophe and quotation marks filters to be in a format ideal for arcgis."""
     format_locations(
         "arcgis",
-        relative_path,
+        None,
         degree_filter,
         apostrophe_filter,
         quotation_marks_filter,

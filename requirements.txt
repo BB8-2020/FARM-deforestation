@@ -5,3 +5,5 @@ opencv-python
 openpyxl
 pandas
 python-dotenv
+scipy
+sentinelhub
