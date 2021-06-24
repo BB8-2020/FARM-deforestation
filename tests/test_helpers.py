@@ -1,7 +1,6 @@
 """Test functions to check if the helper functions run correctly."""
 from pytest import approx
 
-from python.models.dataset import SatelliteImages, file_loader
 from python.models.metrics import MeanIoU, Precision, Recall
 
 
