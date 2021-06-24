@@ -2,6 +2,7 @@
 from typing import List
 
 import numpy as np
+from IPython.display import display
 from keras import preprocessing as keras_preprocessing
 from keras.callbacks import History
 from matplotlib import pyplot as plt
@@ -38,7 +39,7 @@ def display_mask(data: np.ndarray):
     mask = np.argmax(data, axis=-1)
     mask = np.expand_dims(mask, axis=-1)
     img = ImageOps.autocontrast(keras_preprocessing.image.array_to_img(mask))
-    plt.imshow(img)
+    display(img)
 
 
 def process_mask_confidence_treshold(
@@ -97,12 +98,7 @@ def visualise_from_history(model_history: History, metrics: List[str]):
         The metrics to plot from the model history.
     """
     for metric in metrics:
-        plt.plot(
-            model_history.history["{}".format(metric)], label="train_{}".format(metric)
-        )
-        plt.plot(
-            model_history.history["val_{}".format(metric)],
-            label="val_{}".format(metric),
-        )
+        plt.plot(model_history.history[f"{metric}"], label=f"train_{metric}")
+        plt.plot(model_history.history[f"val_{metric}"], label="val_{metric}")
     plt.legend()
     plt.show()
