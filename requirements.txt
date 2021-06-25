@@ -10,4 +10,4 @@ Pillow
 python-dotenv
 scipy
 sentinelhub
-tensorflow==2.5.0
+tensorflow
