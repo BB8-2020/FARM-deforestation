@@ -1,3 +1,9 @@
+altair
+area
+dash
+dash-bootstrap-components
+dash-html-components
+folium
 geojson
 keras
 matplotlib
