@@ -1,4 +1,4 @@
-"""Test functions to check if the model functions run correctly. (Only works locally)"""
+"""Test functions to check if the model functions run correctly (Only works locally)."""
 # from python.models.filter_model import get_filter_model
 # from python.models.model import model_getter
 # from python.models.sampling_model import get_sampling_model
