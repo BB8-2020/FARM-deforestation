@@ -1,3 +1,5 @@
+"""Evalscript of clm."""
+
 evalscript_clm = """
 //VERSION=3
 function setup() {

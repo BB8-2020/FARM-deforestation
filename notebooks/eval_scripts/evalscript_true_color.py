@@ -1,3 +1,5 @@
+"""Evalscript of true color."""
+
 evalscript_true_color = """
     //VERSION=3
 

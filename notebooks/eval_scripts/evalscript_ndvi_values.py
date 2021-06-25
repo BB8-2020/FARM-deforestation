@@ -1,5 +1,6 @@
-evalscript_ndvi_values = """
+"""Evalscript of ndvi values."""
 
+evalscript_ndvi_values = """
 //VERSION=3
     function setup() {
       return{
@@ -13,8 +14,6 @@ evalscript_ndvi_values = """
         }
       }
     }
-
-    
 
     function evaluatePixel(sample) {
       let ndvi = (sample.B08 - sample.B04) / (sample.B08 + sample.B04)

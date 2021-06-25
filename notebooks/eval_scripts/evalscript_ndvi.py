@@ -1,3 +1,5 @@
+"""Evalscript of ndvi."""
+
 evalscript_ndvi = """
 //VERSION=3 (auto-converted from 1)
 // Minimum difference between the two mean NDVIs
@@ -135,20 +137,25 @@ function evaluatePixel(samples, scenes) {
     // check also if is not water
     let difference = avgPreviousYearNDVI - avgCurrentYearNDVI;
 
-    if ((NDWI(samples[0]) < 0.5) & (difference >= thresold) & (avgPreviousYearNDVI > minimunNDVI) & (mean(lastYearMonth0) > minimunNDVI) & (mean(lastYearMonth1) > minimunNDVI) & (mean(lastYearMonth2) > minimunNDVI)) {
+    if ((NDWI(samples[0]) < 0.5) & (difference >= thresold) & (avgPreviousYearNDVI > minimunNDVI) &
+        (mean(lastYearMonth0) > minimunNDVI) & (mean(lastYearMonth1) > minimunNDVI) & (mean(lastYearMonth2) > minimunNDVI)) {
         // the more the difference is high, the more it is red
-        // colorMap = [stretch((2.8 * (2 / 3) * 10 * difference * samples[0].B04 + 0.1 * samples[0].B05), stretchMin, stretchMax), stretch((2.8 * samples[0].B03 + 0.15 * samples[0].B08), stretchMin, stretchMax), stretch((2.8 * samples[0].B02), stretchMin, stretchMax)];
+        // colorMap = [stretch((2.8 * (2 / 3) * 10 * difference * samples[0].B04 + 0.1 * samples[0].B05), stretchMin, stretchMax),
+                       stretch((2.8 * samples[0].B03 + 0.15 * samples[0].B08), stretchMin, stretchMax), stretch((2.8 * samples[0].B02),
+                       stretchMin, stretchMax)];
     }
     // else show current image
     else {
-        // colorMap = [stretch((2.8 * samples[0].B04 + 0.1 * samples[0].B05), stretchMin, stretchMax), stretch((2.8 * samples[0].B03 + 0.15 * samples[0].B08), stretchMin, stretchMax), stretch((2.8 * samples[0].B02), stretchMin, stretchMax)];
+        // colorMap = [stretch((2.8 * samples[0].B04 + 0.1 * samples[0].B05), stretchMin, stretchMax),
+                       stretch((2.8 * samples[0].B03 + 0.15 * samples[0].B08), stretchMin, stretchMax),
+                       stretch((2.8 * samples[0].B02), stretchMin, stretchMax)];
         colorMap = [0, 0, 0];
     }
 
     ndvi = NDVI(samples[1]);
     if (ndvi > 0.75) {
       colorMap = [1, 1, 1];
-    } 
+    }
     return colorMap;
 }
 

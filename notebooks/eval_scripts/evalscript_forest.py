@@ -1,3 +1,5 @@
+"""Evalscript of forest."""
+
 evalscript_forest = """
 //VERSION=3
     function setup() {
