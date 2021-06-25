@@ -1,9 +1,13 @@
 geojson
+keras
+matplotlib
 numpy
 onedrivesdk
 opencv-python
 openpyxl
 pandas
+Pillow
 python-dotenv
 scipy
 sentinelhub
+tensorflow
